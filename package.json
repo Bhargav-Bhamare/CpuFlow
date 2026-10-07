@@ -1,4 +1,7 @@
-{
+{ 
+  "engine": {
+    "node": "24.14.1"
+  },
   "name": "cpu-flow",
   "version": "1.0.0",
   "description": "CPUFlow - Interactive CPU Execution & Performance Simulator",
