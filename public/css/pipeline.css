@@ -1,0 +1,22 @@
+/* Pipeline Lab */
+.lanes{position:relative;padding-bottom:6px}
+.lane-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.lane-box{height:120px;background:#0a1224;border:1px solid var(--line);border-radius:10px;padding:8px 10px;transition:border-color .25s,box-shadow .25s,background .25s} .lane-box b{font:700 15px var(--mono);color:var(--cyan)} .lane-box small{display:block;color:var(--muted);font-size:11px}
+.lane-box.busy{border-color:rgba(34,211,238,.55);background:rgba(34,211,238,.05)}
+.tok-layer{position:absolute;inset:0;pointer-events:none}
+.tok{position:absolute;left:0;top:0;height:46px;background:#0b2a38;border:1px solid var(--cyan);border-radius:8px;padding:3px 8px;display:flex;flex-direction:column;justify-content:center;transition:transform .55s cubic-bezier(.4,0,.2,1),opacity .4s,background .3s;box-shadow:0 0 12px rgba(34,211,238,.25);overflow:hidden}
+.tok b{font:700 11px var(--mono);color:var(--cyan)} .tok span{font:11px var(--mono);color:#e2f6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tok.stall{background:#33250a;border-color:var(--amber);box-shadow:0 0 14px rgba(245,158,11,.4);animation:pulseAmber 1s infinite} .tok.stall b{color:var(--amber)}
+.tok.flush{background:#3a1517;border-color:var(--red);animation:flushOut .9s forwards} .tok.flush b{color:var(--red)} .tok.gone{opacity:0}
+.lane-svg{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible} .lane-svg path.fa{fill:none;stroke:var(--amber);stroke-width:2.4;stroke-dasharray:200;stroke-dashoffset:200;animation:dash .6s forwards;filter:drop-shadow(0 0 4px var(--amber))}
+@keyframes dash{to{stroke-dashoffset:0}}
+.hazard-banner{margin-top:10px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:#0a1224;font-size:13px;min-height:38px} .hazard-banner b{margin-right:6px;font-family:var(--mono)}
+.hazard-banner.data{border-color:var(--amber);background:rgba(245,158,11,.08)} .hazard-banner.data b{color:var(--amber)} .hazard-banner.control{border-color:var(--red);background:rgba(248,113,113,.09)} .hazard-banner.control b{color:var(--red)} .hazard-banner.structural{border-color:#fb923c;background:rgba(251,146,60,.09)} .hazard-banner.structural b{color:#fb923c} .hazard-banner.fwd{border-color:var(--amber);background:rgba(245,158,11,.05)} .hazard-banner.fwd b{color:#fcd34d}
+.legend{display:flex;gap:8px;font:11px var(--mono)} .lg{padding:1px 8px;border-radius:5px;border:1px solid var(--line2)} .lg.ok{color:var(--cyan)} .lg.stall{color:var(--amber);background:rgba(245,158,11,.1)} .lg.fwd{color:#fcd34d;border-color:#7a5b10} .lg.flush{color:var(--red);background:rgba(248,113,113,.12)}
+table.timeline th,table.timeline td{border:1px solid #101a30;padding:0;text-align:center;min-width:42px;height:30px} table.timeline thead th{color:var(--muted);font-weight:600;background:#0a1224}
+table.timeline th.sticky{position:sticky;left:0;z-index:2;background:#0a1224;text-align:left;padding:0 8px;min-width:190px;white-space:nowrap;color:var(--text);font-weight:400} th.sticky code{background:none;border:0;padding:0;color:#9fb0cf}
+td.cell span{display:inline-block;min-width:36px;padding:3px 0;border-radius:5px;font-weight:600} td.cell.ok span{background:rgba(34,211,238,.14);color:var(--cyan)} td.cell.stall span{background:rgba(245,158,11,.18);color:var(--amber)} td.cell.fwd span{background:rgba(250,204,21,.18);color:#fcd34d;box-shadow:0 0 8px rgba(250,204,21,.3)} td.cell.flush span{background:rgba(248,113,113,.2);color:var(--red)}
+td.cell.new span,td.cell span{animation:cellIn .35s backwards}
+.bars{display:grid;gap:7px} .hbar{display:grid;grid-template-columns:minmax(80px,1.3fr) 2fr minmax(60px,auto);gap:8px;align-items:center;font-size:12px} .hbar .hl{color:#9fb0cf;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .hbar .ht{height:10px;background:#0a1224;border:1px solid var(--line);border-radius:6px;overflow:hidden} .hbar i{display:block;height:100%;width:0;background:var(--cyan);border-radius:6px;transition:width .7s cubic-bezier(.3,.8,.3,1)} .hbar .hv{font:600 12px var(--mono);color:#e6f4ff;text-align:right}
+.bars.cmp .hbar{grid-template-columns:minmax(120px,1.6fr) 2fr minmax(50px,auto)}
+@media (max-width:700px){.lane-row{grid-template-columns:repeat(5,130px);overflow-x:auto} .lanes{overflow-x:auto}}

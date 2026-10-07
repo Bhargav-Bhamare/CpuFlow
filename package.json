@@ -1,0 +1,15 @@
+{
+  "name": "cpu-flow",
+  "version": "1.0.0",
+  "description": "CPUFlow - Interactive CPU Execution & Performance Simulator",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node tests/engine.test.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "engines": { "node": ">=16" }
+}

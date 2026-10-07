@@ -1,0 +1,51 @@
+<div class="sim-app" id="app">
+  <%- include('partials/transport') %>
+  <div class="lab-grid">
+    <aside class="panel sim-left">
+      <%- include('partials/program-panel') %>
+      <div class="opts">
+        <h3>Machine</h3>
+        <label class="switch"><input type="checkbox" id="opt-pipe"><span></span>Pipelined</label>
+        <label class="switch"><input type="checkbox" id="opt-fwd"><span></span>Forwarding</label>
+        <label class="stack">Clock frequency: <b id="freq-val">100 MHz</b><input type="range" id="opt-freq" min="10" max="1000" step="10" value="100"></label>
+      </div>
+    </aside>
+    <section class="lab-main">
+      <div class="panel"><div class="panel-head"><h2>Measured from this run</h2><button class="btn sm" id="run-all">Run to end</button></div><div class="metrics-grid big" id="perf-metrics"></div></div>
+      <div class="two">
+        <div class="panel"><div class="panel-head"><h2>CPI over time</h2></div><div id="ch-cpi" class="chart"></div></div>
+        <div class="panel"><div class="panel-head"><h2>Cache hits vs misses</h2></div><div id="ch-hm" class="chart"></div></div>
+      </div>
+      <div class="two">
+        <div class="panel"><div class="panel-head"><h2>Pipeline stage utilization</h2></div><div id="ch-util" class="bars"></div></div>
+        <div class="panel"><div class="panel-head"><h2>Instruction mix</h2></div><div id="ch-mix" class="bars"></div></div>
+      </div>
+    </section>
+    <aside class="sim-right">
+      <div class="panel"><div class="panel-head"><h2>Formula explorer</h2><button class="btn sm" id="use-live">Use measured</button></div>
+        <label class="stack">Instruction count <b id="fx-ic-v"></b><input type="range" id="fx-ic" min="1" max="1000000" value="1000"></label>
+        <label class="stack">CPI <b id="fx-cpi-v"></b><input type="range" id="fx-cpi" min="1" max="10" step="0.05" value="1.5"></label>
+        <label class="stack">Clock <b id="fx-f-v"></b><input type="range" id="fx-f" min="10" max="4000" step="10" value="100"></label>
+        <div id="fx-out" class="formula-out"></div>
+      </div>
+    </aside>
+  </div>
+  <div class="page tight">
+    <div class="two">
+      <div class="panel"><div class="panel-head"><h2>Amdahl's Law</h2></div>
+        <div class="amdahl-grid">
+          <div>
+            <label class="stack">Fraction improved (f) <b id="am-f-v"></b><input type="range" id="am-f" min="0" max="0.99" step="0.01" value="0.8"></label>
+            <label class="stack">Speedup of that fraction (s) <b id="am-s-v"></b><input type="range" id="am-s" min="1" max="64" step="1" value="8"></label>
+            <div class="big-num"><small>Overall speedup</small><b id="am-out">-</b><span id="am-lim"></span></div>
+            <div class="bars" id="am-bar"></div>
+          </div>
+          <div id="am-chart" class="chart tall"></div>
+        </div>
+      </div>
+      <div class="panel"><div class="panel-head"><h2>Compare configurations</h2><div class="seg" id="cmp-seg"><button data-cmp="pipe" aria-pressed="true">Pipeline</button><button data-cmp="fwd" aria-pressed="false">Forwarding</button><button data-cmp="cache" aria-pressed="false">Cache size</button></div></div>
+        <p class="hint" id="cmp-desc"></p>
+        <div id="cmp-out" class="bars cmp"></div></div>
+    </div>
+  </div>
+</div>

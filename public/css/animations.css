@@ -1,0 +1,42 @@
+/* Animations - each one is triggered by a simulation event (classes are toggled by the scripts). */
+@keyframes fade{from{opacity:0}to{opacity:1}} @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes tick{0%{color:var(--cyan);transform:translateY(-2px)}100%{color:#e6f4ff;transform:none}}
+@keyframes pulseAmber{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.0)}50%{box-shadow:0 0 14px 1px rgba(245,158,11,.5)}}
+@keyframes flushOut{0%{background:rgba(248,113,113,.4);opacity:1}100%{background:rgba(248,113,113,.1);opacity:.1;transform:translateX(18px) scale(.92)}}
+@keyframes cellIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes regFlash{0%{box-shadow:0 0 0 1px var(--green),0 0 22px rgba(52,211,153,.55);background:rgba(52,211,153,.16)}100%{box-shadow:none;background:var(--panel2)}}
+@keyframes logIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+@keyframes bannerIn{from{opacity:0}to{opacity:1}}
+
+/* SVG node states */
+.node .nbox{fill:#0f1a31;stroke:#2a3b5e;stroke-width:1.4;transition:stroke .2s,fill .2s,filter .2s}
+.node{cursor:default;outline:none} .node[data-info]{cursor:pointer} .node[data-info]:hover .nbox{stroke:#4d6ba3} .node:focus-visible .nbox{stroke:var(--cyan)}
+.node.container .nbox{fill:#0c1426;stroke-dasharray:5 4}
+.node.cell .nbox{fill:#0a1224} .node.cell .nlabel{fill:var(--muted)} .node.cell .nvalue{font-size:15px}
+.nlabel{fill:#8ea2c8;font:600 11px var(--sans);letter-spacing:.04em;pointer-events:none} .nvalue{fill:#e6f4ff;font:600 14px var(--mono);pointer-events:none} .nsub{fill:#7d8ba8;font:10px var(--mono);pointer-events:none}
+.node.small .nvalue{font-size:11px}
+.stxt{fill:#cfe3ff;font:12px var(--mono);pointer-events:none} .stxt.alu-t{font:700 15px var(--sans);fill:#9fb0cf} .stxt.alu-op{fill:var(--amber);font:700 14px var(--mono)} .stxt.alu-r{fill:var(--green);font-weight:700} .stxt.port{fill:var(--muted);font-size:10px}
+.link{fill:none;stroke:#2c4166;stroke-width:2;transition:stroke .2s,filter .2s} .link.ctl{stroke:#3e3566;stroke-dasharray:5 4;stroke-width:1.6} .link.fwdlink{stroke:#4d3a14;stroke-dasharray:2 4}
+.arrowhead{fill:#2c4166} .linklabel{fill:var(--muted);font:10px var(--mono)}
+.link.glow-cyan{stroke:var(--cyan);filter:drop-shadow(0 0 4px var(--cyan))} .link.glow-green{stroke:var(--green);filter:drop-shadow(0 0 4px var(--green))} .link.glow-amber{stroke:var(--amber);filter:drop-shadow(0 0 4px var(--amber))}
+.link.glow-red{stroke:var(--red);filter:drop-shadow(0 0 4px var(--red))} .link.glow-purple{stroke:var(--purple);filter:drop-shadow(0 0 4px var(--purple))}
+.node.on-cyan .nbox{stroke:var(--cyan);fill:#0d2236;filter:drop-shadow(0 0 7px rgba(34,211,238,.55))} .node.on-green .nbox{stroke:var(--green);fill:#0b2a24;filter:drop-shadow(0 0 7px rgba(52,211,153,.55))}
+.node.on-amber .nbox{stroke:var(--amber);fill:#2a2110;filter:drop-shadow(0 0 7px rgba(245,158,11,.55))} .node.on-red .nbox{stroke:var(--red);fill:#2e1517;filter:drop-shadow(0 0 7px rgba(248,113,113,.55))}
+.node.on-purple .nbox{stroke:var(--purple);fill:#1e1840;filter:drop-shadow(0 0 7px rgba(167,139,250,.55))}
+.pkt rect{fill:#08202c;stroke:var(--cyan);stroke-width:1} .pkt text{fill:#d8f7ff;font:600 10px var(--mono)}
+.pkt.tone-green rect{fill:#08261f;stroke:var(--green)} .pkt.tone-amber rect{fill:#2a2008;stroke:var(--amber)} .pkt.tone-red rect{fill:#2e1517;stroke:var(--red)} .pkt.tone-purple rect{fill:#1d1740;stroke:var(--purple)}
+.node.banner{opacity:0;pointer-events:none} .node.banner.show{opacity:1;animation:bannerIn .2s} .node.banner .nbox{stroke-width:1.6} .node.banner .nvalue{font:700 11px var(--mono)}
+.node.banner.tone-amber .nbox{stroke:var(--amber);fill:#2a2110} .node.banner.tone-amber .nvalue{fill:var(--amber)} .node.banner.tone-red .nbox{stroke:var(--red);fill:#2e1517} .node.banner.tone-red .nvalue{fill:var(--red)}
+.node.banner.tone-green .nbox{stroke:var(--green);fill:#0b2a24} .node.banner.tone-green .nvalue{fill:var(--green)} .node.banner.tone-cyan .nbox{stroke:var(--cyan);fill:#0d2236} .node.banner.tone-cyan .nvalue{fill:var(--cyan)}
+.cpu-box{fill:rgba(34,211,238,.025);stroke:#2a3b5e;stroke-dasharray:6 5} .cpu-title{fill:var(--muted);font:700 12px var(--sans);letter-spacing:.1em} .zone{fill:#51608a;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.ch-empty{fill:var(--muted);font:12px var(--sans)}
+
+/* register cards */
+.reg.changed{animation:regFlash 1.3s ease-out} .reg.changed .rc{color:var(--green)}
+.stg.held{animation:pulseAmber 1s infinite} /* only present while an instruction is actually stalled */
+.tl{animation:logIn .25s}
+.mo{animation:logIn .25s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}

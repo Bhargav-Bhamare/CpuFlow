@@ -1,0 +1,13 @@
+<div class="panel-head"><h2>Assembly program</h2><span class="hint" id="prog-count"></span></div>
+<div id="editor" class="editor-host"></div>
+<div id="prog-errors" class="prog-errors" role="alert" aria-live="polite"></div>
+<div class="btn-row">
+  <button class="btn primary" id="btn-load">Load program</button>
+  <button class="btn" id="btn-examples">Example programs</button>
+  <button class="btn ghost" id="btn-clear">Clear</button>
+</div>
+<details class="isa">
+  <summary>Instruction set</summary>
+  <p><code>LOAD Rd, addr</code> <code>STORE Rs, addr</code> <code>ADD SUB MUL DIV AND OR XOR Rd, Rs, Rt|imm</code> <code>MOV Rd, Rs|imm</code> <code>CMP Ra, Rb</code> <code>JMP t</code> <code>BEQ BNE Ra, Rb, t</code> <code>NOP</code> <code>HALT</code></p>
+  <p>Registers R0-R7. Addresses are word addresses 0-1023; Memory[A] starts as A. Branch targets are instruction numbers or <code>label:</code> names. Comments start with <code>;</code></p>
+</details>

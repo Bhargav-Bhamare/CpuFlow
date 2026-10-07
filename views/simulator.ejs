@@ -1,0 +1,90 @@
+<div class="sim-app" id="app">
+  <%- include('partials/transport') %>
+  <div class="sim-grid">
+    <aside class="panel sim-left" aria-label="Program">
+      <%- include('partials/program-panel') %>
+      <div class="opts">
+        <h3>Machine options</h3>
+        <label class="switch"><input type="checkbox" id="opt-pipe"><span></span>Pipelined execution</label>
+        <label class="switch"><input type="checkbox" id="opt-fwd"><span></span>Data forwarding</label>
+        <label class="switch"><input type="checkbox" id="opt-uni"><span></span>Unified memory port</label>
+        <p class="hint">Cache geometry is set in the <a href="/cache">Cache lab</a>. Options persist across labs.</p>
+      </div>
+    </aside>
+
+    <section class="sim-center" aria-label="CPU visualization">
+      <div class="metrics-strip" id="metrics" aria-label="Live performance metrics"></div>
+      <div class="panel viz-panel">
+        <div class="viz-head">
+          <div class="seg" id="mode-seg" role="group" aria-label="View mode">
+            <button data-mode="exec" aria-pressed="true">Execution Mode</button>
+            <button data-mode="arch" aria-pressed="false">Architecture Mode</button>
+          </div>
+          <div class="stage-strip" id="stage-strip" aria-label="Instruction in each stage"></div>
+        </div>
+        <div class="viz-stage">
+          <div class="viz-scroll"><svg id="cpu-svg" role="img" aria-label="CPU datapath"></svg><svg id="arch-svg" role="img" aria-label="CPU architecture overview" hidden></svg></div>
+          <div class="demo-callout" id="demo-callout">
+            <b>Try the simulator</b>
+            <span>A small program is loaded. Press run and watch one instruction travel through the CPU.</span>
+            <button class="btn primary" id="callout-run">&#9654; Run Simulation</button>
+          </div>
+        </div>
+        <div class="micro-now"><small>Current micro-operation</small><div id="micro-now-lines" aria-live="off"><span class="muted">Waiting for the first clock cycle</span></div></div>
+        <div class="sig-row" id="sig-row" aria-label="Control signals"></div>
+      </div>
+
+      <div class="panel bottom-tabs" id="bottom-tabs">
+        <div class="tabbar" role="tablist">
+          <button role="tab" data-tab="terminal" aria-selected="true">Terminal</button>
+          <button role="tab" data-tab="micro" aria-selected="false">Micro-operations</button>
+          <button role="tab" data-tab="memory" aria-selected="false">Memory</button>
+          <button role="tab" data-tab="cachetab" aria-selected="false">Cache</button>
+          <button role="tab" data-tab="trace" aria-selected="false">Instruction trace</button>
+          <button role="tab" data-tab="control" aria-selected="false">Control unit</button>
+        </div>
+        <div class="tabpanel" data-panel="terminal"><div class="tab-tools"><button class="btn sm ghost" id="clear-term">Clear logs</button></div><div id="terminal" class="terminal" role="log"></div></div>
+        <div class="tabpanel" data-panel="micro" hidden><div class="tab-tools"><button class="btn sm ghost" id="clear-micro">Clear</button></div><div id="microlog" class="terminal" role="log"></div></div>
+        <div class="tabpanel" data-panel="memory" hidden><div id="memview"></div></div>
+        <div class="tabpanel" data-panel="cachetab" hidden><div id="cache-mini"></div></div>
+        <div class="tabpanel" data-panel="trace" hidden><div id="trace"></div></div>
+        <div class="tabpanel" data-panel="control" hidden><div id="ctl-host"></div></div>
+      </div>
+    </section>
+
+    <aside class="sim-right" aria-label="Live CPU state">
+      <div class="panel">
+        <div class="panel-head"><h2>Live CPU state</h2></div>
+        <dl class="kv" id="cpu-regs">
+          <div><dt data-info="pc">PC</dt><dd id="v-pc">0</dd></div>
+          <div><dt data-info="ir">IR</dt><dd id="v-ir">-</dd></div>
+          <div><dt data-info="mar">MAR</dt><dd id="v-mar">0</dd></div>
+          <div><dt data-info="mdr">MDR</dt><dd id="v-mdr">0</dd></div>
+          <div><dt data-info="cir">CIR</dt><dd id="v-cir">-</dd></div>
+        </dl>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-info="rf">Registers</h2></div>
+        <div id="regbank" class="regbank"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-info="alu">ALU</h2></div>
+        <dl class="kv">
+          <div><dt>Operation</dt><dd id="alu-op">-</dd></div>
+          <div><dt>Input A</dt><dd id="alu-a">0</dd></div>
+          <div><dt>Input B</dt><dd id="alu-b">0</dd></div>
+          <div><dt>Result</dt><dd id="alu-r">0</dd></div>
+        </dl>
+        <div class="flags" id="alu-flags"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2 data-info="mem">Memory</h2></div>
+        <dl class="kv">
+          <div><dt>Address</dt><dd id="m-addr">-</dd></div>
+          <div><dt>Read / Write</dt><dd id="m-rw">-</dd></div>
+          <div><dt>Value</dt><dd id="m-val">-</dd></div>
+        </dl>
+      </div>
+    </aside>
+  </div>
+</div>

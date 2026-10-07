@@ -1,0 +1,26 @@
+<section class="hero">
+  <div class="hero-copy">
+    <h1>CPUFlow</h1>
+    <p class="hero-sub">See what happens inside a CPU.</p>
+    <p class="lede">An interactive Computer Organization simulator that visualizes instruction execution, pipelining, cache behavior and processor performance.</p>
+    <div class="btn-row">
+      <a class="btn primary lg" href="/simulator">Launch Simulator</a>
+      <a class="btn lg" href="/architecture">Explore Architecture</a>
+    </div>
+    <p class="hero-status" id="hero-status" aria-live="off"><span class="dot"></span><span id="hero-status-text">ADD R3, R1, R2</span></p>
+  </div>
+  <div class="hero-viz">
+    <svg id="hero-svg" role="img" aria-label="Miniature CPU showing an instruction travelling through control unit, registers, ALU, cache and memory"></svg>
+    <ol class="hero-steps" id="hero-steps" aria-hidden="true">
+      <li>Fetch</li><li>Decode</li><li>Execute</li><li>Memory</li><li>Write back</li>
+    </ol>
+  </div>
+</section>
+<section class="lab-strip" aria-label="Labs">
+  <a href="/simulator"><b>CPU Simulator</b><span>Write assembly, run it, watch every register and bus.</span></a>
+  <a href="/pipeline"><b>Pipeline Lab</b><span>Hazards, stalls, forwarding and flushes cycle by cycle.</span></a>
+  <a href="/cache"><b>Cache &amp; Memory</b><span>Mapping, replacement, hits, misses and the hierarchy.</span></a>
+  <a href="/control-unit"><b>Control Unit</b><span>Hardwired versus microprogrammed control signals.</span></a>
+  <a href="/performance"><b>Performance</b><span>CPI, MIPS, speedup and Amdahl's Law, live.</span></a>
+  <a href="/architecture"><b>Architecture &amp; I/O</b><span>Flynn's classes, interrupts and DMA.</span></a>
+</section>

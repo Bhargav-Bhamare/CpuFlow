@@ -1,0 +1,26 @@
+<section class="page" id="arch-page">
+  <div class="page-head"><h1>Architecture, Flynn's classes &amp; I/O</h1><p>Click any component for a short explanation and to see its connections light up.</p></div>
+  <div class="tabs" id="arch-tabs">
+    <div class="tabbar" role="tablist">
+      <button role="tab" data-tab="arch" aria-selected="true">CPU architecture</button>
+      <button role="tab" data-tab="flynn" aria-selected="false">Flynn's classification</button>
+      <button role="tab" data-tab="io" aria-selected="false">I/O organization</button>
+    </div>
+    <div class="tabpanel" data-panel="arch">
+      <div class="two asym">
+        <div class="panel"><div class="viz-scroll"><svg id="arch-svg" role="img" aria-label="CPU architecture"></svg></div></div>
+        <div class="panel detail" id="arch-detail"><h2>Select a component</h2><p>Click the control unit, ALU, registers, cache, memory or I/O controller.</p></div>
+      </div>
+    </div>
+    <div class="tabpanel" data-panel="flynn" hidden>
+      <div class="seg" id="flynn-seg"><button data-f="SISD" aria-pressed="true">SISD</button><button data-f="SIMD" aria-pressed="false">SIMD</button><button data-f="MISD" aria-pressed="false">MISD</button><button data-f="MIMD" aria-pressed="false">MIMD</button></div>
+      <div class="two asym"><div class="panel"><div class="viz-scroll short"><svg id="flynn-svg" role="img" aria-label="Flynn architecture streams"></svg></div><div class="btn-row"><button class="btn primary" id="flynn-go">Send streams</button></div></div>
+      <div class="panel detail" id="flynn-detail"></div></div>
+    </div>
+    <div class="tabpanel" data-panel="io" hidden>
+      <div class="seg" id="io-seg"><button data-io="polled" aria-pressed="true">Programmed I/O</button><button data-io="int" aria-pressed="false">Interrupt</button><button data-io="dma" aria-pressed="false">DMA</button></div>
+      <div class="two asym"><div class="panel"><div class="viz-scroll short"><svg id="io-svg" role="img" aria-label="I/O organization"></svg></div><div class="btn-row"><button class="btn primary" id="io-go">Start transfer</button></div><div id="io-meter" class="bars"></div></div>
+      <div class="panel detail" id="io-detail"></div></div>
+    </div>
+  </div>
+</section>

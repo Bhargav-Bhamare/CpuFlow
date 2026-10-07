@@ -1,0 +1,55 @@
+<section class="page" id="cache-lab">
+  <div class="page-head"><h1>Cache &amp; Memory Lab</h1><p>Send addresses to an L1 cache and watch the lookup, hit or miss, and block fill.</p></div>
+  <div class="lab-cols">
+    <div class="col">
+      <div class="panel">
+        <div class="panel-head"><h2>Cache configuration</h2></div>
+        <div class="form-grid">
+          <label>Mapping<select id="c-map"><option value="direct">Direct mapped</option><option value="set">Set associative</option><option value="fully">Fully associative</option></select></label>
+          <label>Cache lines<select id="c-lines"><option>4</option><option selected>8</option><option>16</option><option>32</option><option>64</option></select></label>
+          <label>Block size (words)<select id="c-block"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option></select></label>
+          <label>Ways (set assoc.)<select id="c-ways"><option>2</option><option>4</option><option>8</option></select></label>
+          <label>Replacement<select id="c-pol"><option value="LRU">LRU</option><option value="FIFO">FIFO</option></select></label>
+          <label>Miss penalty (cycles)<input type="number" id="c-pen" min="1" max="50" value="4"></label>
+        </div>
+        <p class="hint" id="c-geom"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>CPU request</h2></div>
+        <div class="req-row">
+          <label>Address<input id="req-addr" value="100" inputmode="numeric" aria-describedby="req-help"></label>
+          <label>Write value<input id="req-val" placeholder="read only" inputmode="numeric"></label>
+          <button class="btn primary" id="req-go">Send request</button>
+        </div>
+        <p class="hint" id="req-help">Decimal or 0x hex, 0-1023. Leave the value empty to read.</p>
+        <div class="btn-row wrap">
+          <button class="btn sm" id="pat-seq">Sequential &times;16</button>
+          <button class="btn sm" id="pat-loop">Loop over 12 words &times;3</button>
+          <button class="btn sm" id="pat-rand">Random &times;16</button>
+          <button class="btn sm" id="pat-conflict">Conflict pattern</button>
+          <button class="btn sm" id="pat-prog">Replay current program's memory accesses</button>
+          <button class="btn sm danger" id="c-reset">Reset cache</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Address breakdown</h2><span class="hint" id="addr-note"></span></div>
+        <div id="addr-bits" class="addr-bits"></div>
+      </div>
+    </div>
+    <div class="col wide">
+      <div class="panel">
+        <div class="panel-head"><h2>CPU &rarr; Cache &rarr; Main memory</h2><span class="verdict" id="verdict" data-state="idle">IDLE</span></div>
+        <div class="viz-scroll short"><svg id="cache-svg" role="img" aria-label="CPU, cache and main memory with moving data packets"></svg></div>
+      </div>
+      <div class="panel"><div class="panel-head"><h2>Cache contents</h2></div><div id="cache-table"></div></div>
+      <div class="two">
+        <div class="panel"><div class="panel-head"><h2>Cache metrics</h2></div><div class="metrics-grid" id="cache-metrics"></div></div>
+        <div class="panel"><div class="panel-head"><h2>Hits vs misses</h2></div><div id="hm-chart" class="chart"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="panel"><div class="panel-head"><h2>Memory hierarchy</h2><span class="hint">Highlight shows the path taken by the last request</span></div><div id="hierarchy" class="hier"></div></div>
+    <div class="panel"><div class="panel-head"><h2>Main memory</h2></div><div id="memview"></div></div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<div class="sim-app" id="app">
+  <%- include('partials/transport') %>
+  <div class="lab-grid">
+    <aside class="panel sim-left" aria-label="Program">
+      <%- include('partials/program-panel') %>
+      <div class="opts">
+        <h3>Pipeline options</h3>
+        <label class="switch"><input type="checkbox" id="opt-pipe"><span></span>Pipeline enabled</label>
+        <label class="switch"><input type="checkbox" id="opt-fwd"><span></span>Forwarding</label>
+        <label class="switch"><input type="checkbox" id="opt-uni"><span></span>Single memory port (structural hazard)</label>
+        <p class="hint">Branches are resolved in EX with a predict-not-taken policy: a taken branch flushes the two younger instructions.</p>
+      </div>
+    </aside>
+    <section class="lab-main">
+      <div class="metrics-strip" id="metrics"></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Pipeline stages</h2><span class="hint" id="pipe-mode-note"></span></div>
+        <div class="lanes" id="lanes" aria-label="Pipeline stages"></div>
+        <div class="hazard-banner" id="hazard-banner" role="status" aria-live="polite"><span class="muted">No hazards yet</span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Pipeline timeline</h2>
+          <div class="legend"><span class="lg ok">stage</span><span class="lg stall">stall</span><span class="lg fwd">forwarded</span><span class="lg flush">flushed</span></div></div>
+        <div class="tl-wrap" id="timeline"></div>
+      </div>
+    </section>
+    <aside class="sim-right">
+      <div class="panel"><div class="panel-head"><h2>Hazard log</h2><button class="btn sm ghost" id="clear-hz">Clear</button></div><div id="hazard-log" class="terminal short" role="log"></div></div>
+      <div class="panel"><div class="panel-head"><h2>This program, same hardware</h2></div><div id="pipe-compare" class="bars"></div><p class="hint">Computed by re-running the loaded program headlessly with the current cache and forwarding settings.</p></div>
+    </aside>
+  </div>
+</div>

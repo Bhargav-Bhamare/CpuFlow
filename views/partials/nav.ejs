@@ -1,0 +1,18 @@
+<%
+const links = [
+  ['home', '/', 'Home'], ['simulator', '/simulator', 'Simulator'], ['pipeline', '/pipeline', 'Pipeline'],
+  ['cache', '/cache', 'Cache & Memory'], ['control', '/control-unit', 'Control Unit'],
+  ['performance', '/performance', 'Performance'], ['architecture', '/architecture', 'Architecture'], ['about', '/about', 'Concepts']
+];
+%>
+<header class="topnav">
+  <a class="brand" href="/" aria-label="CPUFlow home">
+    <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0b1220" stroke="#22d3ee" stroke-opacity=".5"/><path d="M6 17h6l3-7 3 13 3-8 2 2h3" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>CPUFlow</span>
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+  <nav id="navlinks" class="navlinks" aria-label="Main">
+    <% links.forEach(function (l) { %><a href="<%= l[1] %>" <%- active === l[0] ? 'aria-current="page" class="on"' : '' %>><%= l[2] %></a>
+    <% }) %>
+  </nav>
+</header>

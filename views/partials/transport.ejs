@@ -1,0 +1,19 @@
+<div class="transport" role="toolbar" aria-label="Simulation controls">
+  <div class="tp-left">
+    <span class="badge" id="sim-status" data-state="idle">NO PROGRAM</span>
+    <span class="readout" title="Elapsed simulated time"><small>Clock</small><b id="clock-readout">0 ns</b></span>
+    <span class="readout"><small>Cycle</small><b id="cycle-readout">0</b></span>
+  </div>
+  <div class="tp-mid">
+    <button class="btn primary" data-act="run" id="btn-run" title="Run (Space)"><span aria-hidden="true">&#9654;</span> Run</button>
+    <button class="btn" data-act="pause" id="btn-pause" title="Pause (Space)" hidden><span aria-hidden="true">&#10074;&#10074;</span> Pause</button>
+    <button class="btn" data-act="step" title="Execute one clock cycle (N)">Step cycle</button>
+    <button class="btn" data-act="stepi" title="Execute one full instruction (I)">Step instruction</button>
+    <button class="btn danger" data-act="reset" title="Reset (R)">Reset</button>
+  </div>
+  <div class="tp-right">
+    <div class="seg" role="group" aria-label="Simulation speed">
+      <% ['0.25','0.5','1','2','4'].forEach(function (s) { %><button data-speed="<%= s %>" aria-pressed="<%= s === '1' %>"><%= s %>x</button><% }) %>
+    </div>
+  </div>
+</div>

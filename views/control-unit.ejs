@@ -1,0 +1,25 @@
+<div class="sim-app" id="app">
+  <%- include('partials/transport') %>
+  <div class="lab-grid">
+    <aside class="panel sim-left"><%- include('partials/program-panel') %></aside>
+    <section class="lab-main">
+      <div class="panel">
+        <div class="panel-head"><h2>Control unit</h2><span class="hint" id="ctl-now">No instruction decoded yet</span></div>
+        <div id="ctl-host"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Signal table - every instruction in the loaded program</h2></div>
+        <div id="ctl-table" class="tl-wrap"></div>
+      </div>
+    </section>
+    <aside class="sim-right">
+      <div class="panel"><div class="panel-head"><h2>Try any instruction</h2></div>
+        <label class="stack">Instruction<input id="ctl-try" value="ADD R3, R1, R2" spellcheck="false"></label>
+        <p class="hint" id="ctl-try-msg"></p>
+        <div id="ctl-try-sig" class="sig-row"></div>
+      </div>
+      <div class="panel"><div class="panel-head"><h2>Hardwired vs microprogrammed</h2></div>
+        <p class="hint">Hardwired control derives signals from the opcode with fixed logic: fast, but changing it means redesigning hardware. Microprogrammed control looks up a micro-word per step in a control memory: slower, but easy to change.</p></div>
+    </aside>
+  </div>
+</div>
